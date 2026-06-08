@@ -9,9 +9,13 @@ jobs:
         python-version: [ '2.7', '3.5', '3.6', '3.7', '3.10' ]
         os: ['ubuntu-22.04', 'ubuntu-latest']
         exclude:
+             - python-version: 2.7
+               os: ubuntu-latest
              - python-version: 3.5
                os: ubuntu-latest
              - python-version: 3.6
+               os: ubuntu-latest
+             - python-version: 3.7
                os: ubuntu-latest
     runs-on: ${{ matrix.os }}
     name: Build and test with Python ${{ matrix.python-version }}
