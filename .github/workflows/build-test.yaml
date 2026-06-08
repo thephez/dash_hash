@@ -6,17 +6,14 @@ jobs:
   build:
     strategy:
       matrix:
-        python-version: [ '2.7', '3.5', '3.6', '3.7', '3.10' ]
+        python-version: [ '3.10', '3.11', '3.12', '3.13', '3.14' ]
         os: ['ubuntu-20.04', 'ubuntu-22.04', 'ubuntu-latest']
-        exclude:
-             - python-version: 2.7
-               os: ubuntu-latest
-             - python-version: 3.5
-               os: ubuntu-latest
-             - python-version: 3.6
-               os: ubuntu-latest
-             - python-version: 3.7
-               os: ubuntu-latest
+        # Old Pythons are only available on ubuntu-20.04, so add them there only.
+        include:
+          - { python-version: '2.7', os: ubuntu-20.04 }
+          - { python-version: '3.5', os: ubuntu-20.04 }
+          - { python-version: '3.6', os: ubuntu-20.04 }
+          - { python-version: '3.7', os: ubuntu-20.04 }
     runs-on: ${{ matrix.os }}
     name: Build and test with Python ${{ matrix.python-version }}
     steps:
