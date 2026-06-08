@@ -1,6 +1,9 @@
-name:  Build and Test C++ and Python
+name:  Build and Test Python C Extension
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
