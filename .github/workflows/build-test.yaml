@@ -41,9 +41,9 @@ jobs:
     container: ${{ matrix.image }}
     name: ${{ matrix.image }}
     steps:
-      # checkout@v3 is the last release on Node 16; newer Node binaries do not
-      # run against the old glibc in these images.
-      - uses: actions/checkout@v3
+      # buster's glibc (2.28) is new enough to run checkout's bundled Node, so
+      # the current major can be used here.
+      - uses: actions/checkout@v4
       - run: |
           python -m pip install .
           python test.py
